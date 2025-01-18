@@ -6,14 +6,14 @@ about:
   links:
     - icon: twitter
       text: Twitter
-      href: https://twitter.com
+      href: https://x.com/nickvarabioff
     - icon: linkedin
       text: LinkedIn
-      href: https://linkedin.com
+      href: https://www.linkedin.com/in/nvarabioff/
     - icon: github
       text: Github
-      href: https://github.com
+      href: https://github.com/nvarabioff
 
 ---
 
-About this blog
+Welcome to my blog! I am a Master of Data Science Student at UBC with experience as a data engineer.

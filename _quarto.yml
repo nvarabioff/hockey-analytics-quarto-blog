@@ -3,14 +3,14 @@ project:
   output-dir: docs
 
 website:
-  title: "Fundamentals of Modern Hockey Analytics"
+  title: "Nicholas Varabioff's Blog"
   navbar:
     right:
       - about.qmd
       - icon: github
-        href: https://github.com/
+        href: https://github.com/nvarabioff
       - icon: twitter
-        href: https://twitter.com
+        href: https://x.com/nickvarabioff
 format:
   html:
     theme: cosmo

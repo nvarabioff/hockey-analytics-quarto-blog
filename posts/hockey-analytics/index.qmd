@@ -1,0 +1,9 @@
+---
+title: "Fundamentals of Modern Hockey Analytics"
+author: "Nicholas Varabioff"
+date: "2025-01-18"
+categories: [news, code, analysis]
+image: "image.png"
+---
+
+# Introduction

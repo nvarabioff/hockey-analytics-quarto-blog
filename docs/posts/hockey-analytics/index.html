@@ -22,7 +22,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -156,13 +176,148 @@ ul.task-list li input[type="checkbox"] {
 
 
 
+<p><img src="image.png" class="img-fluid"></p>
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
+<p>Hockey, a sport consisting of two teams of five skaters and a goalie on ice, is a dynamic blend of tactics and physical skill. In today’s era of advanced analytics, the way teams, athletes, and fans understand hockey is changing rapidly. Predicting player performance, optimizing team strategies, and improving fan experience are prioritized by many smart minds in the sport. Using statistics, advanced analytics, and machine learning, we can uncover hidden patterns in the action and drive the evolution of hockey into a new generation.</p>
+</section>
+<section id="advanced-analytics" class="level1">
+<h1>Advanced Analytics</h1>
+<p>Beyond fundamental hockey metrics like goals and assists, “advanced” analytics are growing in popularity. It is important to understand these key metrics.</p>
+<section id="corsi-and-fenwick" class="level2">
+<h2 class="anchored" data-anchor-id="corsi-and-fenwick">Corsi and Fenwick</h2>
+<p><strong>Corsi</strong> can be explained as shot attempts. This includes the sum of shots on goal, missed shots, and blocked shots. It can be measured for a team or a player. Most commonly, Corsi is used to approximate shot attempt differential, which can be used as an indication of future goal differentials. If a team or player has high Corsi, they are creating more chances than their opponents, which should result in a higher goal differential over time. Most players have a “Corsi For” percentage (percent of shots for their team, compared to their opponent) between 40 and 60. A player or team ranked above 55% is often considered elite <span class="citation" data-cites="wilson2014corsi"><a href="#ref-wilson2014corsi" role="doc-biblioref">[1]</a></span>.</p>
+<p><strong>Fenwick</strong>, also known as “unblocked shot attempts”, is a variant of Corsi that only counts shots on goal and missed shots; it does not include blocked shots. It is generally viewed as having a stronger correlation to scoring chances. By itself, it is less reliable than Corsi, but it is the foundation of most Expected Goals models, which will be explained later <span class="citation" data-cites="wilson2014corsi"><a href="#ref-wilson2014corsi" role="doc-biblioref">[1]</a></span>.</p>
+</section>
+<section id="pdo" class="level2">
+<h2 class="anchored" data-anchor-id="pdo">PDO</h2>
+<p>Simply, <strong>PDO</strong> is the sum of a team’s shooting percentage (offensifve goals scored divided by total shots for) and save percentage (shots saved divided by total shots against), multiplied by 10. Most teams should expect a PDO of around 100. PDO is often viewed as a measure of how “lucky” a team is <span class="citation" data-cites="liu2023pdo"><a href="#ref-liu2023pdo" role="doc-biblioref">[2]</a></span>. For example, if a team has more goals scored on fewer shots, this could be interpreted as the team getting lucky with these goals; their shooting percentage would increase, resulting in a PDO greater than 100, reflecting this luck.</p>
+</section>
+<section id="expected-goals" class="level2">
+<h2 class="anchored" data-anchor-id="expected-goals">Expected Goals</h2>
+<p><strong>Expected goals</strong>, abbreviated as <strong>xG</strong>, is an attempt to give each shot attempt value, depending on its location and type <span class="citation" data-cites="oconnor2019playdriving"><a href="#ref-oconnor2019playdriving" role="doc-biblioref">[3]</a></span>. For example, a shot from the front of the net might get a score of 0.3, whereas a shot from the blueline might only get a score of 0.02. Generally, models will also factor in the situation of the game, such as if the shot is off a rebound or a rush <span class="citation" data-cites="hockeystatistics2022xgmodel"><a href="#ref-hockeystatistics2022xgmodel" role="doc-biblioref">[4]</a></span>. Essentially, xG can be viewed as a form of Corsi that values each shot differently. This is not an exact science, and there are many different xG models, such as the model from Evolving Hockey <span class="citation" data-cites="evolvinghockey2021xgmodel"><a href="#ref-evolvinghockey2021xgmodel" role="doc-biblioref">[5]</a></span>. The variable importances in <a href="#fig-xG-variable-importance" class="quarto-xref">Figure&nbsp;1</a> show how each shot is measured for its contribution of the expected goals score.</p>
+<div id="fig-xG-variable-importance" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-xG-variable-importance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="xG-variable-importance.png" class="img-fluid figure-img" style="width:69.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-xG-variable-importance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Evolving Hockey Expected Goals Model, Variable Importance
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="goals-saved-above-expected" class="level2">
+<h2 class="anchored" data-anchor-id="goals-saved-above-expected">Goals Saved Above Expected</h2>
+<p><strong>Goals Saved Above Expected</strong> can be interpreted as the goalie version of expected goals. This is calculated as the expected goals against minus the actual number of goals the goalie has let in. A positive number means the goalie is stopping more goals than an average goalie would <span class="citation" data-cites="moneypuck_glossary"><a href="#ref-moneypuck_glossary" role="doc-biblioref">[6]</a></span>.</p>
+</section>
+<section id="wins-above-replacement" class="level2">
+<h2 class="anchored" data-anchor-id="wins-above-replacement">Wins Above Replacement</h2>
+<p><strong>Wins Above Replacement</strong> (WAR) is another metric with multiple modelling approaches. WAR attempts to assign a total value to each player to represent how much that player contributed to their team <span class="citation" data-cites="evolvinghockey_gar"><a href="#ref-evolvinghockey_gar" role="doc-biblioref">[7]</a></span>.</p>
+</section>
+</section>
+<section id="applications-of-advanced-analytics" class="level1">
+<h1>Applications of Advanced Analytics</h1>
+<p>Many of the advanced analytics metrics described above are used for player evaluation. Individual metrics, such as Corsi, Fenwick, and WAR, can be used to evaluate a player’s value to a team. This can be useful in team management decisions, such as scouting, deciding which players to roster, and contract negotiations.</p>
+<p>Analytics can also be used in team strategy decisions. Metrics such as expected goals can be used to determine line combinations for different scenarios. An example of analytics affecting a team’s strategy is that teams are pulling their goalie an average of 24 seconds earlier in 2021 compared to the 2013-14 season. Seattle Kraken head coach Dave Hakstol credits this change to a heavier reliance on analytics <span class="citation" data-cites="seattletimes2022pullinggoalies"><a href="#ref-seattletimes2022pullinggoalies" role="doc-biblioref">[8]</a></span>.</p>
+<p>There are also fan implications. Advanced analytics metrics are consistently being discussed during broadcasts, enhancing fan engagement and understanding of the sport. Moneypuck’s “Deserve To Win O’Meter” <a href="#fig-deservo-meter" class="quarto-xref">Figure&nbsp;2</a> is a fun graphical way to show which team “deserved” to win the game, regardless of the actual score based on expected goals. It’s interesting that teams that finish the game at above 50% on the meter have historically won 64% of games <span class="citation" data-cites="moneypuck_about"><a href="#ref-moneypuck_about" role="doc-biblioref">[9]</a></span>.</p>
+<div id="fig-deservo-meter" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-deservo-meter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="deservo-meter.png" class="img-fluid figure-img" style="width:69.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-deservo-meter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Moneypuck “Deserve To Win O’Meter” for a game between Philadelphia Flyers and New Jersey Devils
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="results-and-limitations" class="level1">
+<h1>Results and Limitations</h1>
+<p>Due to the high degree of randomness in sports, specifically in hockey, there are some concerns and limitations about the effectiveness of advanced analytics. For example, moneypuck’s game prediction model states that “For the 2023-2024 regular season, the team the pre-game model had as the favorite won 61.1% of games. The model’s log loss was 0.661” <span class="citation" data-cites="moneypuck_about"><a href="#ref-moneypuck_about" role="doc-biblioref">[9]</a></span>. While better than picking randomly, an accuracy score of 61% does not induce confidence in any given prediction. One example of public opinion turning against sports analytics is when the Tampa Bay Rays (MLB) pulled their pitcher while he was in the midst of a no-hitter. This was an analytics-based decision, and was largely criticized <span class="citation" data-cites="mlb2020snell"><a href="#ref-mlb2020snell" role="doc-biblioref">[10]</a></span>.</p>
+<p>Another limitation is the public availability of high quality data. NHL team in-house data is often tightly guarded and not shared with the public. This is evidenced by Winnipeg Jets head coach Paul Maurice criticizing public analytical models, stating that the public analytics did not match the Jets in-house models <span class="citation" data-cites="topdownhockey2022maurice"><a href="#ref-topdownhockey2022maurice" role="doc-biblioref">[11]</a></span>.</p>
+</section>
+<section id="technologies" class="level1">
+<h1>Technologies</h1>
+<p>If you are interested in working in hockey analytics, it’s important to be skilled in programming/software, data analysis and statistical techniques, and presentation. Hockey specific domain knowledge can also be a valuable asset.</p>
+<p>Most analytical tools are built with programming languages <strong>Python</strong>, <strong>R</strong>, and <strong>SQL</strong>. It is also important to understand key Python libraries, such as <strong>Pandas</strong> (data manipulation), <strong>NumPy</strong> (numerical computation), <strong>Matplotlib/Seaborn/Altair</strong> (data visualization), and <strong>scikit-learn</strong> (machine learning).</p>
+<p>It is also important to have a solid understanding of data analysis and statistical techniques. Statistical concepts including distributions, regression analysis, hypothesis testing, and correlation are crucial for analyzing player performance and game data. Machine learning techniques, such as decision trees, random forests, and neural networks are very useful for predictive modelling.</p>
+<p>A critical but underestimated skill is data visualization and storytelling. The usefulness of the most complex analysis can be very limited if it is not translated into insights that are accessible and understandable for non-technical audiences, which include the main consumers of hockey analytics data (coaches, broadcasters, fans).</p>
+</section>
+<section id="resources" class="level1">
+<h1>Resources</h1>
+<p>Hockey analytics is continuously innovating and growing. Some analytical tools are publicly available:</p>
+<ul>
+<li>https://www.naturalstattrick.com</li>
+<li>https://www.moneypuck.com</li>
+<li>https://evolving-hockey.com/</li>
+<li>https://hockeyviz.com</li>
+<li>https://hockeyprospecting.com</li>
+<li>https://eprinkside.com</li>
+<li>https://www.allthreezones.com</li>
+<li>https://public.tableau.com/app/profile/topdownhockey/vizzes</li>
+<li>Twitter community (@jfresh, @domluszczyszyn, etc.)</li>
+</ul>
+<p>There are also many useful sources of raw data, including:</p>
+<ul>
+<li>https://moneypuck.com/data.htm</li>
+<li>https://www.nhl.com/stats/</li>
+<li>https://edge.nhl.com/en/home</li>
+<li>https://www.hockey-reference.com/</li>
+</ul>
+</section>
+<section id="summary-and-final-thoughts" class="level1">
+<h1>Summary and Final Thoughts</h1>
+<ul>
+<li>Hockey analytics is the process of analyzing hockey players and teams through the use of statistics, machine learning, and other tools, to gain a greater understanding of the effects of their performance.</li>
+<li>Key metrics include Corsi, Fenwick, PDO, Expected Goals, Goals Saved Above Expected, and Wins Above Replacement.</li>
+<li>Advanced analytics can be applied in player evaluation, team strategy, and fan engagement.</li>
+<li>Concerns and limitations about the use of analytics in hockey include lack of model accuracy and lack of high quality data.</li>
+<li>Important technological skills in hockey analytics include programming/software skills, data analysis and statistical techniques, domain specific knowledge, and presentation skills.</li>
+</ul>
+</section>
+<section id="references" class="level1">
+
+
 
 
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
+<div id="ref-wilson2014corsi" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">M. Wilson, <span>“Wilson: Don’t know corsi? Here’s a handy-dandy primer on advanced stats,”</span> <em>Calgary Herald</em>, 2014, Available: <a href="https://web.archive.org/web/20150212084832/http://www.calgaryherald.com/sports/Wilson+know+Corsi+Here+handy+dandy+primer+advanced+stats/10265096/story.html">https://web.archive.org/web/20150212084832/http://www.calgaryherald.com/sports/Wilson+know+Corsi+Here+handy+dandy+primer+advanced+stats/10265096/story.html</a></div>
+</div>
+<div id="ref-liu2023pdo" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">M. Liu, <span>“Explaining PDO and why it matters in hockey,”</span> <em>CanucksArmy</em>, 2023, Available: <a href="https://canucksarmy.com/news/pdo-stats-hockey-vancouver-canucks-kuzmenko">https://canucksarmy.com/news/pdo-stats-hockey-vancouver-canucks-kuzmenko</a></div>
+</div>
+<div id="ref-oconnor2019playdriving" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[3] </div><div class="csl-right-inline">C. O’Connor, <span>“Hockey advanced stats primer, part 2: How can (and should) we measure play-driving ability?”</span> <em>The Athletic</em>, 2019, Available: <a href="https://www.nytimes.com/athletic/1381978/2019/12/05/hockey-advanced-stats-primer-part-2-how-can-and-should-we-measure-play-driving-ability/">https://www.nytimes.com/athletic/1381978/2019/12/05/hockey-advanced-stats-primer-part-2-how-can-and-should-we-measure-play-driving-ability/</a></div>
+</div>
+<div id="ref-hockeystatistics2022xgmodel" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[4] </div><div class="csl-right-inline">H. Statistics, <span>“Building an xG model v1.0,”</span> <em>Hockey Statistics</em>, 2022, Available: <a href="https://hockey-statistics.com/2022/08/14/building-an-xg-model-v-1-0/">https://hockey-statistics.com/2022/08/14/building-an-xg-model-v-1-0/</a></div>
+</div>
+<div id="ref-evolvinghockey2021xgmodel" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[5] </div><div class="csl-right-inline">E. Hockey, <span>“A new expected goals model for predicting goals in the NHL,”</span> <em>Evolving Hockey Blog</em>, 2021, Available: <a href="https://evolving-hockey.com/blog/a-new-expected-goals-model-for-predicting-goals-in-the-nhl/">https://evolving-hockey.com/blog/a-new-expected-goals-model-for-predicting-goals-in-the-nhl/</a></div>
+</div>
+<div id="ref-moneypuck_glossary" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[6] </div><div class="csl-right-inline">MoneyPuck, <span>“Glossary of terms.”</span> n.d. Available: <a href="https://moneypuck.com/glossary.htm">https://moneypuck.com/glossary.htm</a></div>
+</div>
+<div id="ref-evolvinghockey_gar" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[7] </div><div class="csl-right-inline">E. Hockey, <span>“Goals above replacement (GAR).”</span> n.d. Available: <a href="https://evolving-hockey.com/glossary/goals-above-replacement/">https://evolving-hockey.com/glossary/goals-above-replacement/</a></div>
+</div>
+<div id="ref-seattletimes2022pullinggoalies" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[8] </div><div class="csl-right-inline">G. Baker, <span>“Here’s why the kraken and other NHL teams are pulling goalies earlier,”</span> <em>The Seattle Times</em>, 2022, Available: <a href="https://www.seattletimes.com/sports/kraken/heres-why-the-kraken-and-other-nhl-teams-are-pulling-goalies-earlier/">https://www.seattletimes.com/sports/kraken/heres-why-the-kraken-and-other-nhl-teams-are-pulling-goalies-earlier/</a></div>
+</div>
+<div id="ref-moneypuck_about" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[9] </div><div class="csl-right-inline">MoneyPuck, <span>“About MoneyPuck.”</span> n.d. Available: <a href="https://moneypuck.com/about.htm">https://moneypuck.com/about.htm</a></div>
+</div>
+<div id="ref-mlb2020snell" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[10] </div><div class="csl-right-inline">MLB.com, <span>“Debate over blake snell’s 2020 world series game 6 decision,”</span> <em>MLB.com</em>, 2020, Available: <a href="https://www.mlb.com/news/debate-blake-snell-2020-world-series-game-6">https://www.mlb.com/news/debate-blake-snell-2020-world-series-game-6</a></div>
+</div>
+<div id="ref-topdownhockey2022maurice" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[11] </div><div class="csl-right-inline">T. D. Hockey, <span>“What to make of paul maurice’s crusade against public hockey analytics,”</span> <em>Medium</em>, 2022, Available: <a href="https://topdownhockey.medium.com/what-to-make-of-paul-maurices-crusade-against-public-hockey-analytics-32f3cea90c1d">https://topdownhockey.medium.com/what-to-make-of-paul-maurices-crusade-against-public-hockey-analytics-32f3cea90c1d</a></div>
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

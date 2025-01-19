@@ -32,6 +32,48 @@
     "href": "posts/hockey-analytics/index.html",
     "title": "Fundamentals of Modern Hockey Analytics",
     "section": "",
-    "text": "Introduction"
+    "text": "Hockey, a sport consisting of two teams of five skaters and a goalie, is a dynamic blend of tactics and physical skill. In today’s era of advanced analytics, the way teams, athletes, and fans understand hockey is changing rapidly. Predicting player performance, optimizing team strategies, and improving fan experience are prioritized by many smart minds in the sport. Using statistics, advanced analytics, and machine learning, we can uncover hidden patterns in the action and drive the evolution of hockey into a new generation."
+  },
+  {
+    "objectID": "posts/hockey-analytics/index.html#corsi",
+    "href": "posts/hockey-analytics/index.html#corsi",
+    "title": "Fundamentals of Modern Hockey Analytics",
+    "section": "Corsi",
+    "text": "Corsi\nCorsi can be explained as shot attempts. This includes the sum of shots on goal, missed shots, and blocked shots. It can be measured for a team or a player. Most commonly, Corsi is used to approximate shot attempt differential, which can be used as an indication of future goal differentials. If a team or player has high Corsi, they are creating more chances than their opponents, which should result in a higher goal differential over time. Most players have a “Corsi For” percentage (percent of shots for their team, compared to their opponent) between 40 and 60. A player or team ranked above 55% is often considered elite (Wilson 2014).\nFenwick, also known as “unblocked shot attempts”, is a variant of Corsi that only counts shots on goal and missed shots; it does not include blocked shots. It is generally viewed as having a stronger correlation to scoring chances. By itself, it is less reliable than Corsi, but it is the foundation of most Expected Goals models, which will be explained later (Wilson 2014)."
+  },
+  {
+    "objectID": "posts/hockey-analytics/index.html#pdo",
+    "href": "posts/hockey-analytics/index.html#pdo",
+    "title": "Fundamentals of Modern Hockey Analytics",
+    "section": "PDO",
+    "text": "PDO\nSimply, PDO is the sum of a team’s shooting percentage (offensifve goals scored divided by total shots for) and save percentage (shots saved divided by total shots against), multiplied by 10. Most teams should expect a PDO of around 100. PDO is often viewed as a measure of how “lucky” a team is [2]. For example, if a team has more goals scored on fewer shots, this could be interpreted as the team getting lucky with these goals; their shooting percentage would increase, resulting in a PDO greater than 100, reflecting this luck."
+  },
+  {
+    "objectID": "posts/hockey-analytics/index.html#expected-goals",
+    "href": "posts/hockey-analytics/index.html#expected-goals",
+    "title": "Fundamentals of Modern Hockey Analytics",
+    "section": "Expected Goals",
+    "text": "Expected Goals\nExpected goals, abbreviated as xG, is an attempt to give each shot attempt value, depending on its location and type [3]. For example, a shot from the front of the net might get a score of 0.3, whereas a shot from the blueline might only get a score of 0.02. Generally, models will also factor in the situation of the game, such as if the shot is off a rebound or a rush [4]. Essentially, xG can be viewed as a form of Corsi that values each shot differently. This is not an exact science, and there are many different xG models, such as the model from Evolving Hockey [5]. The variable importances in Figure 1 show how each shot is measured for its contribution of the expected goals score.\n\n\n\n\n\n\nFigure 1: Evolving Hockey Expected Goals Model, Variable Importance"
+  },
+  {
+    "objectID": "posts/hockey-analytics/index.html#goals-saved-above-expected",
+    "href": "posts/hockey-analytics/index.html#goals-saved-above-expected",
+    "title": "Fundamentals of Modern Hockey Analytics",
+    "section": "Goals Saved Above Expected",
+    "text": "Goals Saved Above Expected\nGoals Saved Above Expected can be interpreted as the goalie version of expected goals. This is calculated as the expected goals against minus the actual number of goals the goalie has let in. A positive number means the goalie is stopping more goals than an average goalie would [6]."
+  },
+  {
+    "objectID": "posts/hockey-analytics/index.html#wins-above-replacement",
+    "href": "posts/hockey-analytics/index.html#wins-above-replacement",
+    "title": "Fundamentals of Modern Hockey Analytics",
+    "section": "Wins Above Replacement",
+    "text": "Wins Above Replacement\nWins Above Replacement (WAR) is another metric with multiple modelling approaches. WAR attempts to assign a total value to each player to represent how much that player contributed to their team [7]."
+  },
+  {
+    "objectID": "posts/hockey-analytics/index.html#corsi-and-fenwick",
+    "href": "posts/hockey-analytics/index.html#corsi-and-fenwick",
+    "title": "Fundamentals of Modern Hockey Analytics",
+    "section": "Corsi and Fenwick",
+    "text": "Corsi and Fenwick\nCorsi can be explained as shot attempts. This includes the sum of shots on goal, missed shots, and blocked shots. It can be measured for a team or a player. Most commonly, Corsi is used to approximate shot attempt differential, which can be used as an indication of future goal differentials. If a team or player has high Corsi, they are creating more chances than their opponents, which should result in a higher goal differential over time. Most players have a “Corsi For” percentage (percent of shots for their team, compared to their opponent) between 40 and 60. A player or team ranked above 55% is often considered elite [1].\nFenwick, also known as “unblocked shot attempts”, is a variant of Corsi that only counts shots on goal and missed shots; it does not include blocked shots. It is generally viewed as having a stronger correlation to scoring chances. By itself, it is less reliable than Corsi, but it is the foundation of most Expected Goals models, which will be explained later [1]."
   }
 ]

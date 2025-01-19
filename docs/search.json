@@ -14,32 +14,11 @@
     "text": "This is the first post in a Quarto blog, used for testing and experimenting with Quarto. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
   },
   {
-    "objectID": "posts/post-with-code/index.html",
-    "href": "posts/post-with-code/index.html",
-    "title": "Post With Code",
-    "section": "",
-    "text": "This is a post with executable code."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Nicholas Varabioff’s Blog",
-    "section": "",
-    "text": "Fundamentals of Modern Hockey Analytics\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nJan 18, 2025\n\n\nNicholas Varabioff\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nJan 15, 2025\n\n\nNicholas Varabioff\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "posts/hockey-analytics/index.html",
-    "href": "posts/hockey-analytics/index.html",
+    "objectID": "posts/hockey-analytics/index.html#corsi-and-fenwick",
+    "href": "posts/hockey-analytics/index.html#corsi-and-fenwick",
     "title": "Fundamentals of Modern Hockey Analytics",
-    "section": "",
-    "text": "Hockey, a sport consisting of two teams of five skaters and a goalie, is a dynamic blend of tactics and physical skill. In today’s era of advanced analytics, the way teams, athletes, and fans understand hockey is changing rapidly. Predicting player performance, optimizing team strategies, and improving fan experience are prioritized by many smart minds in the sport. Using statistics, advanced analytics, and machine learning, we can uncover hidden patterns in the action and drive the evolution of hockey into a new generation."
-  },
-  {
-    "objectID": "posts/hockey-analytics/index.html#corsi",
-    "href": "posts/hockey-analytics/index.html#corsi",
-    "title": "Fundamentals of Modern Hockey Analytics",
-    "section": "Corsi",
-    "text": "Corsi\nCorsi can be explained as shot attempts. This includes the sum of shots on goal, missed shots, and blocked shots. It can be measured for a team or a player. Most commonly, Corsi is used to approximate shot attempt differential, which can be used as an indication of future goal differentials. If a team or player has high Corsi, they are creating more chances than their opponents, which should result in a higher goal differential over time. Most players have a “Corsi For” percentage (percent of shots for their team, compared to their opponent) between 40 and 60. A player or team ranked above 55% is often considered elite (Wilson 2014).\nFenwick, also known as “unblocked shot attempts”, is a variant of Corsi that only counts shots on goal and missed shots; it does not include blocked shots. It is generally viewed as having a stronger correlation to scoring chances. By itself, it is less reliable than Corsi, but it is the foundation of most Expected Goals models, which will be explained later (Wilson 2014)."
+    "section": "Corsi and Fenwick",
+    "text": "Corsi and Fenwick\nCorsi can be explained as shot attempts. This includes the sum of shots on goal, missed shots, and blocked shots. It can be measured for a team or a player. Most commonly, Corsi is used to approximate shot attempt differential, which can be used as an indication of future goal differentials. If a team or player has high Corsi, they are creating more chances than their opponents, which should result in a higher goal differential over time. Most players have a “Corsi For” percentage (percent of shots for their team, compared to their opponent) between 40 and 60. A player or team ranked above 55% is often considered elite [1].\nFenwick, also known as “unblocked shot attempts”, is a variant of Corsi that only counts shots on goal and missed shots; it does not include blocked shots. It is generally viewed as having a stronger correlation to scoring chances. By itself, it is less reliable than Corsi, but it is the foundation of most Expected Goals models, which will be explained later [1]."
   },
   {
     "objectID": "posts/hockey-analytics/index.html#pdo",
@@ -70,10 +49,10 @@
     "text": "Wins Above Replacement\nWins Above Replacement (WAR) is another metric with multiple modelling approaches. WAR attempts to assign a total value to each player to represent how much that player contributed to their team [7]."
   },
   {
-    "objectID": "posts/hockey-analytics/index.html#corsi-and-fenwick",
-    "href": "posts/hockey-analytics/index.html#corsi-and-fenwick",
-    "title": "Fundamentals of Modern Hockey Analytics",
-    "section": "Corsi and Fenwick",
-    "text": "Corsi and Fenwick\nCorsi can be explained as shot attempts. This includes the sum of shots on goal, missed shots, and blocked shots. It can be measured for a team or a player. Most commonly, Corsi is used to approximate shot attempt differential, which can be used as an indication of future goal differentials. If a team or player has high Corsi, they are creating more chances than their opponents, which should result in a higher goal differential over time. Most players have a “Corsi For” percentage (percent of shots for their team, compared to their opponent) between 40 and 60. A player or team ranked above 55% is often considered elite [1].\nFenwick, also known as “unblocked shot attempts”, is a variant of Corsi that only counts shots on goal and missed shots; it does not include blocked shots. It is generally viewed as having a stronger correlation to scoring chances. By itself, it is less reliable than Corsi, but it is the foundation of most Expected Goals models, which will be explained later [1]."
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Nicholas Varabioff’s Blog",
+    "section": "",
+    "text": "Fundamentals of Modern Hockey Analytics\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nJan 18, 2025\n\n\nNicholas Varabioff\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nJan 15, 2025\n\n\nNicholas Varabioff\n\n\n\n\n\n\nNo matching items"
   }
 ]
